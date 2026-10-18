@@ -264,9 +264,20 @@ a {
   .xl\:text-6xl { font-size: calc(60px*var(--app-text-scale,1)); }
 }
 
-/* 强制禁止长按选中和系统菜单 */
+/* 1. 核心防御：干掉系统菜单、去高亮 */
+* {
+  -webkit-touch-callout: none !important; /* 阻止华为/苹果长按弹菜单 */
+  -webkit-tap-highlight-color: transparent !important; /* 拖拽时不要出现难看的底色 */
+}
+
+/* 2. 禁止普通区域被选中（防止拖拽时选中背景文字） */
 *:not(input):not(textarea) {
-  -webkit-touch-callout: none !important;
   -webkit-user-select: none !important;
   user-select: none !important;
+}
+
+/* 3. 特殊放行：聊天输入框和聊天气泡允许选词（为了让内部长按功能生效） */
+textarea, input, [contenteditable="true"] {
+  -webkit-user-select: text !important;
+  user-select: text !important;
 }
