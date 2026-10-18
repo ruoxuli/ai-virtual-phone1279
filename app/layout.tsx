@@ -45,6 +45,14 @@ export default function RootLayout({
         <CSSImportEnhancer />
         <ChatPluginBootstrap />
         <ChatReasoningVisibilityController />
+        <script dangerouslySetInnerHTML={{__html: `
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('touchstart', function(e) {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault(); 
+    }
+  }, {passive: false});
+`}} />
         {children}
       </body>
     </html>
