@@ -264,3 +264,9 @@ a {
   .xl\:text-6xl { font-size: calc(60px*var(--app-text-scale,1)); }
 }
 
+/* 强制禁止长按选中和系统菜单 */
+*:not(input):not(textarea) {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
